@@ -1,0 +1,49 @@
+---
+engines:
+  brakeman:
+    enabled: true
+  bundler-audit:
+    enabled: true
+    checks:
+      Insecure Source:
+        enabled: false  
+  csslint:
+    enabled: true
+  coffeelint:
+    enabled: true
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - ruby
+      - javascript
+  eslint:
+    enabled: true
+  fixme:
+    enabled: true
+  rubocop:
+    enabled: true
+    checks:
+      Lint/EndAlignment:
+        enabled: true
+        AlignWith: variable
+ratings:
+  paths:
+  - "**.erb"
+  - "**.haml"
+  - "**.rb"
+  - "**.rhtml"
+  - "**.slim"
+  - "**.css"
+  - "**.coffee"
+  - "**.inc"
+  - "**.js"
+  - "**.jsx"
+  - "**.module"
+exclude_paths:
+- Gemfile.lock
+- config/
+- db/
+- spec/*_helper.rb
+- vendor/
+- ".*"
