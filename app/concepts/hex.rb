@@ -2,8 +2,8 @@ class Hex
   attr_reader :x, :y, :z
 
   def initialize(x, y, z)
-    raise ArgumentError, "co-ordinates must sum to 0" unless x + y + z == 0
     @x, @y, @z = x, y, z
+    raise ArgumentError, "co-ordinates must sum to 0" unless zero?
   end
 
   def ==(another)
@@ -24,6 +24,28 @@ class Hex
 
   def to_a
     [x, y, z]
+  end
+
+  def zero?
+    # to cope with fractional co-ordinates
+    (x + y + z).abs < 1e-6
+  end
+
+  def round
+    rx, ry, rz = to_a.map(&:round)
+    dx = (rx - x).round
+    dy = (ry - y).round
+    dz = (rz - z).round
+
+    if dx > dy && dx > dz
+      rx = -ry - rz
+    elsif dy > dz
+      ry = -rx - rz
+    else
+      rz = -rx - ry
+    end
+
+    Hex.new(rx, ry, rz)
   end
 
   def neighbours

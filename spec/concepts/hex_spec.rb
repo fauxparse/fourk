@@ -46,6 +46,11 @@ describe Hex do
     it { is_expected.to eq [1, 2, -3] }
   end
 
+  describe '#round' do
+    subject { Hex.new(1.1, 0.25, -1.35).round }
+    it { is_expected.to eq Hex.new(1, 0, -1) }
+  end
+
   describe '#neighbours' do
     subject { Hex.new(1, -2, 1).neighbours }
     it {
