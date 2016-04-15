@@ -44,6 +44,6 @@ exclude_paths:
 - Gemfile.lock
 - config/
 - db/
-- spec/*_helper.rb
+- spec/
 - vendor/
 - ".*"
