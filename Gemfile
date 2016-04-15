@@ -47,6 +47,7 @@ group :development, :test do
   gem 'poltergeist'
 end
 
+gem 'dotenv-rails'
 gem 'codeclimate-test-reporter', group: :test, require: nil
 
 group :development do
