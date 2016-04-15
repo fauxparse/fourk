@@ -1,0 +1,10 @@
+language: ruby
+cache: bundler
+rvm:
+  - 2.3.0
+addons:
+  code_climate:
+    repo_token: 4fecffda31eacf94ba6dd6089e1cb8d4732c2a8e9fb8b646496b32f23d11221a
+before_script:
+  - cp config/database.yml.travis config/database.yml
+  - psql -c 'create database travis_ci_test;' -U postgres
