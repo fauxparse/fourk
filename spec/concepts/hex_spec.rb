@@ -32,8 +32,8 @@ describe Hex do
   end
 
   describe '#-' do
-    subject { Hex.new(2, -2, 0) - Hex.new(-1, 0, 1) }
-    it { is_expected.to eq Hex.new(3, -2, -1) }
+    subject { Hex.new(1, -2, 1) - Hex.new(2, -1, -1) }
+    it { is_expected.to eq Hex.new(-1, -1, 2) }
   end
 
   describe '#-@' do
