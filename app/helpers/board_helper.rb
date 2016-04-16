@@ -1,11 +1,11 @@
 module BoardHelper
   def board(board)
     x1, y1, x2, y2 = board.bounds
-    scale = 1000.0 / [x2 - x1, y2 - y1].max * 2
+    scale = 1000.0 / [x2 - x1, y2 - y1].max
     scaled_svg(1000, 1000) do
-      translate_group(*hex_to_pixel(-board.center, scale)) do
+      translate_group(*board.center.map { |x| x * -scale }) do
         board.contents do |hex, contents|
-          board_hex(hex, contents, scale)
+          board_hex(hex, contents, scale * 2)
         end
       end
     end

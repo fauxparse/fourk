@@ -10,6 +10,14 @@ class Hex
     to_a == another.to_a
   end
 
+  def eql?(another)
+    self == another
+  end
+
+  def hash
+    to_a.hash
+  end
+
   def +(another)
     Hex.new(x + another.x, y + another.y, z + another.z)
   end
@@ -40,7 +48,27 @@ class Hex
   end
 
   def round
-    rx, ry, rz = to_a.map(&:round)
+    Hex.rounded_from(x, y, z)
+  end
+
+  def round!
+    self.x, self.y, self.z = round.to_a
+  end
+
+  def neighbours
+    self.class.directions.map { |direction| self + direction }
+  end
+
+  def self.origin
+    new(0, 0, 0)
+  end
+
+  def self.from_axial(q, r)
+    new(q, -q - r, r)
+  end
+
+  def self.rounded_from(x, y, z)
+    rx, ry, rz = [x, y, z].map(&:round)
     dx = (rx - x).round
     dy = (ry - y).round
     dz = (rz - z).round
@@ -54,18 +82,6 @@ class Hex
     end
 
     Hex.new(rx, ry, rz)
-  end
-
-  def neighbours
-    self.class.directions.map { |direction| self + direction }
-  end
-
-  def self.origin
-    new(0, 0, 0)
-  end
-
-  def self.from_axial(q, r)
-    new(q, -q - r, r)
   end
 
   def self.directions

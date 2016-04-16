@@ -1,8 +1,6 @@
 class BoardPresenter
   attr_reader :board
 
-  delegate :center, to: :board
-
   def initialize(board)
     @board = board
   end
@@ -14,15 +12,22 @@ class BoardPresenter
   end
 
   def bounds
-    board.hexes.inject([nil, nil, nil, nil]) do |(x1, y1, x2, y2), hex|
-      x, y = hex_to_xy(hex)
-      [
-        [x1, x - 2].compact.min,
-        [y1, y - 2].compact.min,
-        [x2, x + 2].compact.max,
-        [y2, y + 2].compact.max
-      ]
+    @bounds ||= begin
+      board.hexes.inject([nil, nil, nil, nil]) do |(x1, y1, x2, y2), hex|
+        x, y = hex_to_xy(hex)
+        [
+          [x1, x - 2].compact.min,
+          [y1, y - 2].compact.min,
+          [x2, x + 2].compact.max,
+          [y2, y + 2].compact.max
+        ]
+      end
     end
+  end
+
+  def center
+    x1, y1, x2, y2 = bounds
+    [(x1 + x2) / 2.0, (y1 + y2) / 2.0]
   end
 
   private
