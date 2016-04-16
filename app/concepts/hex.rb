@@ -22,6 +22,14 @@ class Hex
     Hex.new(-x, -y, -z)
   end
 
+  def *(scale)
+    Hex.new(x * scale, y * scale, z * scale)
+  end
+
+  def /(scale)
+    self * (1 / scale)
+  end
+
   def to_a
     [x, y, z]
   end
