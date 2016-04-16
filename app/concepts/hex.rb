@@ -27,7 +27,7 @@ class Hex
   end
 
   def /(scale)
-    self * (1 / scale)
+    Hex.new(x * 1.0 / scale, y * 1.0 / scale, z * 1.0 / scale)
   end
 
   def to_a

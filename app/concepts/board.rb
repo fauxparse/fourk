@@ -1,15 +1,17 @@
 class Board
   attr_reader :hexes
 
+  delegate :size, to: :shape
   delegate :include?, to: :hexes
 
   def initialize(shape)
+    @shape = shape
     @hexes = shape.hexes
-    @occupants = {}
+    @occupants = Hash.new(Blank.new)
   end
 
   def center
-    @center ||= hexes.inject(&:+) * 0.5
+    @center ||= hexes.inject(&:+) / hexes.length
   end
 
   def [](hex)
@@ -24,5 +26,11 @@ class Board
 
   def empty?
     hexes.all? { |hex| self[hex].blank? }
+  end
+
+  private
+
+  def shape
+    @shape
   end
 end

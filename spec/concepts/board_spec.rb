@@ -11,7 +11,7 @@ describe Board do
 
   describe '#center' do
     subject { board.center }
-    it { is_expected.to eq Hex.new(1, -2, 1) }
+    it { is_expected.to eq Hex.new(0.5, -1, 0.5) }
   end
 
   describe '#empty?' do
