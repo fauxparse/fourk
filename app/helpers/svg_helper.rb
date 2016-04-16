@@ -34,8 +34,9 @@ module SvgHelper
     content_tag :polygon, nil, options
   end
 
-  def translate_group(x, y, &block)
-    concat content_tag(:g, nil, transform: "translate(#{x}, #{y})", &block)
+  def translate_group(x, y, options = {}, &block)
+    options[:transform] = "translate(#{x}, #{y})"
+    concat content_tag(:g, nil, options, &block)
   end
 
   private

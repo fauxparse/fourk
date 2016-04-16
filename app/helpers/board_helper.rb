@@ -12,7 +12,7 @@ module BoardHelper
   end
 
   def board_hex(hex, contents, size)
-    translate_group(*hex_to_pixel(hex, size)) do
+    translate_group(*hex_to_pixel(hex, size), class: "hex") do
       concat hexagon(0, 0, size, fill: "white", stroke: "black")
     end
   end

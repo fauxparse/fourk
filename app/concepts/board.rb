@@ -12,17 +12,17 @@ class Board
 
   def center
     @center ||= begin
-      x1, y1, z1, x2, y2, z2 = hexes.inject([nil] * 6) do |(x1, y1, z1), hex|
+      x1, z1, x2, z2 = hexes.inject([nil] * 4) do |(x1, z1), hex|
         [
           [x1, hex.x].compact.min,
-          [y1, hex.y].compact.min,
           [z1, hex.z].compact.min,
           [x2, hex.x].compact.max,
-          [y2, hex.y].compact.max,
           [z2, hex.z].compact.max,
         ]
       end
-      Hex.new((x1 + x2) / 2, (y1 + y2) / 2, (z1 + z2) / 2)
+      x = (x1 + x2).to_d / 2
+      z = (z1 + z2).to_d / 2
+      Hex.new(x, -x - z, z)
     end
   end
 
