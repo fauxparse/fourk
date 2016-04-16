@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :games
+  resources :games do
+    member do
+      post :join
+    end
+  end
 
   get "/auth/google/callback" => "sessions#create"
   get "/logout" => "sessions#destroy", as: :logout

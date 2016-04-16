@@ -1,4 +1,5 @@
 FactoryGirl.define do
-  factory :user do
+  factory :player do
+    user
   end
 end
