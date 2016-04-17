@@ -2,10 +2,21 @@ class Game < ApplicationRecord
   has_many :players, dependent: :destroy
   has_many :users, through: :players
 
+  enum state: {
+    waiting_for_players: "waiting_for_players",
+    playing: "playing",
+    finished: "finished"
+  }
+
   validates :board_shape, :board_size,
     presence: true
   validates :board_size,
     numericality: { only_integer: true, greater_than: 0 }
+  validates :starting_player_position,
+    inclusion: {
+      in: ->(game) { game.players.map(&:position) },
+      allow_blank: true
+    }
 
   scope :open, -> { where("players_count < 2") }
   scope :oldest_first, -> { order(created_at: :asc) }
