@@ -26,6 +26,10 @@ class Game < ApplicationRecord
     players.count >= maximum_number_of_players
   end
 
+  def open?
+    players.count < maximum_number_of_players
+  end
+
   def colors
     @colors ||= Color.first(number_of_colors)
   end

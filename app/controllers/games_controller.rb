@@ -1,12 +1,15 @@
 class GamesController < ApplicationController
+  def index
+    @games = GamesForUser.new(current_user).games
+  end
+
   def show
-    @game = Game.new(board_shape: :rhombus, board_size: 5)
-    @game_presenter = GamePresenter.new(@game)
+    @game_presenter = GamePresenter.new(game)
   end
 
   def create
     CreateGame.new(current_user)
-      .on(:success) { |game| redirect_to game }
+      .on(:success) { |game| redirect_to games_path }
       .on(:failure) { |game| render :new }
       .call
   end
@@ -17,6 +20,11 @@ class GamesController < ApplicationController
       .on(:already_playing, :full) { redirect_to games_path }
       .on(:failure) { |_| redirect_to games_path }
       .call
+  end
+
+  def destroy
+    game.destroy
+    redirect_to games_path
   end
 
   private

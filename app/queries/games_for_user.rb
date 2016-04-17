@@ -3,10 +3,10 @@ class GamesForUser
     @user = user
   end
 
-  def games(user)
+  def games
     Game
-      .includes(:players)
-      .references(:players)
-      .where("players.user_id = ?", @user.id)
+      .includes(players: :user)
+      .joins(:players)
+      .where("players.user_id = ? OR games.players_count < 2", @user.id)
   end
 end

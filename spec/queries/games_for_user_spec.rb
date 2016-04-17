@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-describe OpenGamesWithoutUser do
+describe GamesForUser do
   let(:game)   { FactoryGirl.create(:game) }
   let(:alice)  { FactoryGirl.create(:user) }
   let(:bob)    { FactoryGirl.create(:user) }
   let(:claire) { FactoryGirl.create(:user) }
 
-  subject { OpenGamesWithoutUser.new(alice).games }
+  subject { GamesForUser.new(alice).games }
 
   context 'when the game has no players' do
     it { is_expected.not_to include(game) }
@@ -14,7 +14,7 @@ describe OpenGamesWithoutUser do
 
   context 'when Alice is already playing' do
     before { Player.create(user: alice, game: game) }
-    it { is_expected.not_to include(game) }
+    it { is_expected.to include(game) }
   end
 
   context 'when the game has one player' do

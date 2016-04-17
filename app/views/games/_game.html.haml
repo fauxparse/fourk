@@ -1,0 +1,8 @@
+%li.game
+  - if game.full?
+    = link_to t("games.index.playing_with", players: other_players(game).to_sentence), game
+  - elsif playing?(game)
+    = t("games.index.waiting")
+    = link_to t("games.index.cancel"), game, method: :delete
+  - else
+    = link_to t("games.index.join_with", players: other_players(game).to_sentence), join_game_path(game), method: :post

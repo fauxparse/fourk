@@ -34,9 +34,9 @@ RSpec.describe GamesController, type: :controller do
       expect(game.users).to include(alice)
     end
 
-    it 'redirects to the new game' do
+    it 'redirects to the games list' do
       request
-      expect(response).to redirect_to game
+      expect(response).to redirect_to games_path
     end
   end
 

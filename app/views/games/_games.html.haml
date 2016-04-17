@@ -1,0 +1,5 @@
+- if games.any?
+  %ul.games
+    = render games
+- else
+  %p.empty= t("games.index.nothing")
