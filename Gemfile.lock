@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/fauxparse/acts_as_list.git
+  revision: 312ac92a132b3cd795186b12bf56d779d3fda31f
+  specs:
+    acts_as_list (0.7.2)
+      activerecord (>= 3.0)
+
+GIT
   remote: git://github.com/intridea/oauth2.git
   revision: e0006cb5099bf392f011eb5c49cbec4f893bbdba
   specs:
@@ -65,8 +72,6 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    acts_as_list (0.7.4)
-      activerecord (>= 3.0)
     addressable (2.4.0)
     arel (7.0.0)
     ast (2.2.0)
@@ -346,7 +351,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  acts_as_list
+  acts_as_list!
   bourbon
   byebug
   codeclimate-test-reporter

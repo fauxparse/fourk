@@ -7,7 +7,8 @@ class StartGame
 
   def call
     ready_to_start? &&
-      game.update(state: :playing, starting_player_position: random_position)
+      game.update(state: :playing, starting_player_position: random_position) &&
+      StartTurn.new(game).call
   end
 
   private

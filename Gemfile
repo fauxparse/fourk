@@ -30,7 +30,7 @@ gem 'jbuilder', '~> 2.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'acts_as_list'
+gem 'acts_as_list', github: 'fauxparse/acts_as_list'
 
 gem 'haml'
 gem 'bourbon'

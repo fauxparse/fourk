@@ -1,6 +1,7 @@
 class Game < ApplicationRecord
   has_many :players, dependent: :destroy
   has_many :users, through: :players
+  has_many :turns, inverse_of: :game, dependent: :destroy
 
   enum state: {
     waiting_for_players: "waiting_for_players",
