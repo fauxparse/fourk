@@ -15,4 +15,8 @@ class GamePresenter
   def current_player
     @game.turns.last.player
   end
+
+  def colors
+    @game.colors.map(&:name)
+  end
 end

@@ -20,7 +20,24 @@ module BoardHelper
     }
 
     translate_group(*hex_to_pixel(hex, size), options) do
-      concat hexagon(0, 0, size * 0.95)
+      concat hexagon(0, 0, size * 0.95, class: "hexagon")
+    end
+  end
+
+  def palette(game, size = 56)
+    colors = game.colors
+    width = size * colors.length
+    options = {
+      class: "palette",
+      width: width * 2,
+      height: size * 2,
+      viewBox: [-width, -size, width * 2, size * 2].join(" ")
+    }
+    svg(options) do
+      colors.each.with_index do |color, index|
+        x = index - (colors.length * 0.5) + 0.5
+        concat hexagon(x * size, 0, size, class: "choose", "data-color": color)
+      end
     end
   end
 

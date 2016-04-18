@@ -59,16 +59,65 @@ header {
   }
 
   .hex {
-    polygon {
-      fill: $blue-grey-50;
-    }
+    &.blank {
+      .hexagon {
+        fill: $blue-grey-50;
+        cursor: pointer;
+      }
 
-    &.blank polygon {
-      cursor: pointer;
-
-      &:hover {
-        fill: $white;
+      &:hover,
+      &.active {
+        polygon {
+          fill: $white;
+        }
       }
     }
   }
 }
+
+.palette {
+  position: absolute;
+  pointer-events: none;
+
+  polygon {
+    stroke: $white;
+    stroke-width: 4;
+
+    @include transform(scale(0));
+    @include transform-origin(50% 50%);
+    @include transition-property(transform);
+    @include transition-duration(.25s);
+    @include transition-timing-function($ease-in-back);
+
+    &:nth-child(2) { @include transition-delay(.03s); }
+    &:nth-child(3) { @include transition-delay(.06s); }
+    &:nth-child(4) { @include transition-delay(.09s); }
+
+    &[disabled] {
+      pointer-events: none;
+      opacity: $disabled-alpha;
+    }
+  }
+
+  &.active {
+    pointer-events: auto;
+
+    polygon {
+      @include transform(scale(1));
+      @include transition-timing-function($ease-out-back);
+
+      &:not([disabled]) {
+        cursor: pointer;
+        &.hover {
+          @include transform(scale(1.2));
+          @include transition-delay(0);
+        }
+      }
+    }
+  }
+}
+
+[data-color="red"], [data-color="red"] .hexagon   { fill: $red; }
+[data-color="green"], [data-color="green"] .hexagon { fill: $light-green; }
+[data-color="blue"], [data-color="blue"] .hexagon  { fill: $light-blue; }
+[data-color="yellow"], [data-color="yellow"] .hexagon { fill: $amber; }
