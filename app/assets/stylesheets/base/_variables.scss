@@ -16,11 +16,11 @@ $small-spacing: $base-spacing / 2;
 $base-z-index: 0;
 
 // Font Colors
-$base-font-color: text-color();
+$base-font-color: text-color($blue-grey-900);
 $action-color: $purple;
 
 // Border
-$base-border-color: divider-color();
+$base-border-color: divider-color($blue-grey-900);
 $base-border: 1px solid $base-border-color;
 
 // Background Colors
