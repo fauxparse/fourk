@@ -35,6 +35,7 @@ gem 'acts_as_list', github: 'fauxparse/acts_as_list'
 gem 'haml'
 gem 'bourbon'
 gem 'neat'
+gem 'font-awesome-sass'
 
 gem 'oauth2', github: 'intridea/oauth2'
 gem 'omniauth-oauth2', '~> 1.4.0'

@@ -6,6 +6,14 @@ class Hex
     raise ArgumentError, "co-ordinates must sum to 0" unless zero?
   end
 
+  def q
+    x
+  end
+
+  def r
+    z
+  end
+
   def ==(another)
     to_a == another.to_a
   end

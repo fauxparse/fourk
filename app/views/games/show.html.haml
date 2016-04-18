@@ -1,1 +1,9 @@
-= board @game_presenter.board
+%header
+  = link_to games_path do
+    = icon("chevron-left")
+    = t(".back")
+  %span.playing-with= t(".opponent", opponent: @game_presenter.opponent)
+  %span.turn= whose_turn(@game_presenter.current_player)
+
+%main
+  = board @game_presenter.board

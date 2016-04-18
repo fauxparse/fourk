@@ -4,7 +4,7 @@ class GamesController < ApplicationController
   end
 
   def show
-    @game_presenter = GamePresenter.new(game)
+    @game_presenter = GamePresenter.new(game, current_user)
   end
 
   def create

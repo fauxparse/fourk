@@ -9,3 +9,8 @@ en:
       playing_with: "Game with %{players}"
       join_with: "Join a game with %{players}"
       cancel: "Cancel"
+    show:
+      back: "Back to games list"
+      opponent: "Playing with %{opponent}"
+      your_turn: "Your turn"
+      their_turn: "%{opponent}’s turn"

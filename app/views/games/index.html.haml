@@ -1,9 +1,10 @@
-%main.games-list
+%header
   %h1= t(".title")
+%main.games-list
   %section.my-games
     %h2= t(".in_progress")
     = render partial: "games", object: @games.select(&:full?)
-    = link_to t(".create"), games_path, method: :post
+    = link_to t(".create"), games_path, method: :post, class: "button"
   %section.waiting-games
     %h2= t(".waiting")
     = render partial: "games", object: @games.select(&:open?)
