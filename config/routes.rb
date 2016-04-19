@@ -3,6 +3,8 @@ Rails.application.routes.draw do
     member do
       post :join
     end
+
+    resources :moves, only: %i[create]
   end
 
   get "/auth/google/callback" => "sessions#create"

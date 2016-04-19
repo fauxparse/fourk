@@ -1,9 +1,8 @@
 class Color
-  attr_reader :name, :hex
+  attr_reader :name
 
-  def initialize(name, hex)
+  def initialize(name)
     @name = name
-    @hex = hex
   end
 
   def ==(another)
@@ -25,9 +24,13 @@ class Color
   end
 
   ALL = [
-    new(:red,    '#F44336'),
-    new(:blue,   '#2196F3'),
-    new(:green,  '#8BC34A'),
-    new(:yellow, '#FFEB3B')
+    new(:red),
+    new(:blue),
+    new(:green),
+    new(:yellow)
   ]
+
+  COLOR_NAMES = ALL.map(&:name)
+
+  HASH = Hash[COLOR_NAMES.map(&:to_sym).zip(COLOR_NAMES.map(&:to_s))].freeze
 end

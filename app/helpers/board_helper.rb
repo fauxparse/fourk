@@ -16,7 +16,9 @@ module BoardHelper
       class: hex_class(content),
       "data-x": hex.x,
       "data-y": hex.y,
-      "data-z": hex.z
+      "data-z": hex.z,
+      "data-color": content.color.presence,
+      "data-poops": content.inspect
     }
 
     translate_group(*hex_to_pixel(hex, size), options) do
@@ -53,7 +55,8 @@ module BoardHelper
   def hex_class(content)
     [
       "hex",
-      ("blank" if content.blank?)
+      ("blank" if content.blank?),
+      ("blocked" if content.blocked?)
     ].compact.join(" ")
   end
 end

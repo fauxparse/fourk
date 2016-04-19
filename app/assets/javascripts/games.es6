@@ -25,6 +25,18 @@ $(function() {
         let chosen = $(e.target).closest(".choose");
         if (chosen.length) {
           hex.removeClass("blank").attr("data-color", chosen.data("color"));
+          $.ajax({
+            url: `${location.pathname}/moves`,
+            method: "post",
+            data: {
+              move: {
+                x: hex.data("x"),
+                y: hex.data("y"),
+                z: hex.data("z"),
+                color: chosen.data("color")
+              }
+            }
+          });
         }
         palette.removeClass("active")
           .find("polygon").removeClass("hover").end();

@@ -5,7 +5,7 @@ class GamePresenter
   end
 
   def board
-    @board_presenter ||= BoardPresenter.new(@game.board)
+    @board_presenter ||= BoardPresenter.new(@game)
   end
 
   def opponent

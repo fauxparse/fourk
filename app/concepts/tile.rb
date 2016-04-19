@@ -8,4 +8,8 @@ class Tile
   def blank?
     false
   end
+
+  def blocked?
+    false
+  end
 end

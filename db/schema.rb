@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160417232425) do
+ActiveRecord::Schema.define(version: 20160419010949) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,19 @@ ActiveRecord::Schema.define(version: 20160417232425) do
     t.integer  "starting_player_position"
     t.integer  "turns_count",              default: 0
   end
+
+  create_table "moves", force: :cascade do |t|
+    t.integer  "turn_id"
+    t.integer  "x"
+    t.integer  "y"
+    t.integer  "z"
+    t.integer  "position"
+    t.string   "color"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "moves", ["turn_id"], name: "index_moves_on_turn_id", using: :btree
 
   create_table "players", force: :cascade do |t|
     t.integer  "user_id"
@@ -42,8 +55,9 @@ ActiveRecord::Schema.define(version: 20160417232425) do
     t.integer  "game_id"
     t.integer  "player_id"
     t.integer  "position"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "moves_count", default: 0
   end
 
   add_index "turns", ["game_id"], name: "index_turns_on_game_id", using: :btree

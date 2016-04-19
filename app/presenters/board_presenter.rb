@@ -1,8 +1,11 @@
 class BoardPresenter
   attr_reader :board
 
-  def initialize(board)
-    @board = board
+  def initialize(game)
+    @game = game
+    @board = game.moves.each.with_object(game.board.dup) do |move, board|
+      board[move.hex] = tile_for(move)
+    end
   end
 
   def contents
@@ -39,5 +42,13 @@ class BoardPresenter
       ROOT_3 * (hex.x + hex.z * 0.5),
       1.5 * hex.z
     ]
+  end
+
+  def tile_for(move)
+    if move.black?
+      Blockage.new
+    else
+      Tile.new(move.color)
+    end
   end
 end

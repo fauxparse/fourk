@@ -6,4 +6,8 @@ class Blockage
   def blank?
     false
   end
+
+  def blocked?
+    true
+  end
 end
