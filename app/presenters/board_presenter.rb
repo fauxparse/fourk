@@ -1,11 +1,10 @@
 class BoardPresenter
-  attr_reader :board
+  attr_reader :board, :player
 
-  def initialize(game)
+  def initialize(game, player)
     @game = game
-    @board = game.moves.each.with_object(game.board.dup) do |move, board|
-      board[move.hex] = move.tile
-    end
+    @player = player
+    @board = BoardState.new(game)
   end
 
   def contents

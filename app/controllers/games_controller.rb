@@ -30,6 +30,6 @@ class GamesController < ApplicationController
   private
 
   def game
-    @game ||= Game.includes(:moves).find(params[:id])
+    @game ||= Game.includes(turns: :moves).find(params[:id])
   end
 end

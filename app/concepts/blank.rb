@@ -1,14 +1,10 @@
-class Blank
-  def color
-    nil
+class Blank < Tile
+  def initialize
+    super nil
   end
 
   def blank?
     true
-  end
-
-  def blocked?
-    false
   end
 
   def ==(another)

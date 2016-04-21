@@ -1,10 +1,6 @@
-class Blockage
-  def color
-    nil
-  end
-
-  def blank?
-    false
+class Blockage < Tile
+  def initialize
+    super nil
   end
 
   def blocked?

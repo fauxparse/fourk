@@ -1,5 +1,5 @@
 class Move < ApplicationRecord
-  belongs_to :turn, counter_cache: true
+  belongs_to :turn, inverse_of: :moves, counter_cache: true
   has_one :game, through: :turn
 
   composed_of :hex, mapping: [%w(x x), %w(y y), %w(z z)]
@@ -20,7 +20,7 @@ class Move < ApplicationRecord
     if black?
       Blockage.new
     else
-      Tile.new(Color[color])
+      Tile.new(Color[color], turn.player_id)
     end
   end
 

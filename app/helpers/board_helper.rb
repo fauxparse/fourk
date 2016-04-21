@@ -5,20 +5,19 @@ module BoardHelper
     scaled_svg(1000, 1000, class: "playing-area") do
       translate_group(*board.center.map { |x| x * -scale }, class: "board") do
         board.contents do |hex, contents|
-          board_hex(hex, contents, scale * 2)
+          board_hex(board, hex, contents, scale * 2)
         end
       end
     end
   end
 
-  def board_hex(hex, content, size)
+  def board_hex(board, hex, content, size)
     options = {
-      class: hex_class(content),
+      class: hex_class(board, content),
       "data-x": hex.x,
       "data-y": hex.y,
       "data-z": hex.z,
-      "data-color": content.color.presence,
-      "data-poops": content.inspect
+      "data-color": content.color.presence
     }
 
     translate_group(*hex_to_pixel(hex, size), options) do
@@ -52,9 +51,10 @@ module BoardHelper
     ]
   end
 
-  def hex_class(content)
+  def hex_class(board, content)
     [
       "hex",
+      ("mine" if content.belongs_to?(board.player)),
       ("blank" if content.blank?),
       ("blocked" if content.blocked?)
     ].compact.join(" ")

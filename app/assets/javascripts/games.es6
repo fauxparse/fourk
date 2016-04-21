@@ -24,7 +24,10 @@ $(function() {
       $(window).one('mouseup touchend', function(e) {
         let chosen = $(e.target).closest(".choose");
         if (chosen.length) {
-          hex.removeClass("blank").attr("data-color", chosen.data("color"));
+          hex
+            .removeClass("blank")
+            .addClass("mine")
+            .attr("data-color", chosen.data("color"));
           $.ajax({
             url: `${location.pathname}/moves`,
             method: "post",

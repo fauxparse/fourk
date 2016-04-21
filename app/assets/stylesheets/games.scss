@@ -121,3 +121,10 @@ header {
 [data-color="green"], [data-color="green"] .hexagon { fill: $light-green; }
 [data-color="blue"], [data-color="blue"] .hexagon  { fill: $light-blue; }
 [data-color="yellow"], [data-color="yellow"] .hexagon { fill: $amber; }
+
+.hex[data-color="red"]:not(.mine) .hexagon   { fill: $red-100; }
+.hex[data-color="green"]:not(.mine) .hexagon { fill: $light-green-100; }
+.hex[data-color="blue"]:not(.mine) .hexagon  { fill: $light-blue-100; }
+.hex[data-color="yellow"]:not(.mine) .hexagon { fill: $amber-100; }
+
+.hex.blocked .hexagon { fill: $blue-grey-900; }

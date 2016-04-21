@@ -1,6 +1,6 @@
 class BoardState
   attr_accessor :board, :colors
-  delegate :[], :[]=, to: :board
+  delegate :[], :[]=, :hexes, to: :board
 
   def initialize(game)
     @board = Board.new(game.shape)
