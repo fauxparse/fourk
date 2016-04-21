@@ -15,7 +15,7 @@ class JoinGame
         player = Player.new(user: @user, game: @game)
         player.save!
         StartGame.new(@game).call if @game.full?
-        publish(:success)
+        publish(:success, player)
       rescue ActiveRecord::RecordInvalid
         publish(:failure, player)
       end

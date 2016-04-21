@@ -11,7 +11,7 @@ describe JoinGame do
     it 'succeeds' do
       expect(service)
         .to receive(:publish)
-        .with(:success)
+        .with(:success, an_instance_of(Player))
         .and_call_original
       service.call
     end
@@ -23,7 +23,7 @@ describe JoinGame do
     it 'succeeds' do
       expect(service)
         .to receive(:publish)
-        .with(:success)
+        .with(:success, an_instance_of(Player))
         .and_call_original
       service.call
     end

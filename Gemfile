@@ -32,6 +32,8 @@ gem 'jbuilder', '~> 2.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'active_model_serializers', '>= 0.10.0.rc3'
+
 gem 'acts_as_list', github: 'fauxparse/acts_as_list'
 
 gem 'haml'

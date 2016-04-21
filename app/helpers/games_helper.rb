@@ -14,4 +14,16 @@ module GamesHelper
       t("games.show.their_turn", opponent: player)
     end
   end
+
+  def meta_tags(values)
+    values.each do |name, content|
+      concat meta_tag(name, content)
+    end
+  end
+
+  private
+
+  def meta_tag(name, content)
+    content_tag :meta, nil, name: name, content: content
+  end
 end

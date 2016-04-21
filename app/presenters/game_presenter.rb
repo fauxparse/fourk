@@ -4,6 +4,10 @@ class GamePresenter
     @user = user
   end
 
+  def id
+    @game.id
+  end
+
   def board
     @board_presenter ||= BoardPresenter.new(@game, player)
   end

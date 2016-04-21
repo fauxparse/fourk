@@ -1,4 +1,6 @@
 class GamesController < ApplicationController
+  helper_method :current_player
+
   def index
     @games = GamesForUser.new(current_user).games
   end
@@ -9,14 +11,20 @@ class GamesController < ApplicationController
 
   def create
     CreateGame.new(current_user)
-      .on(:success) { |game| redirect_to games_path }
+      .on(:success) do |game|
+        self.current_player = game.players.first
+        redirect_to games_path
+      end
       .on(:failure) { |game| render :new }
       .call
   end
 
   def join
     JoinGame.new(current_user, game)
-      .on(:success) { redirect_to game }
+      .on(:success) do |player|
+        self.current_player = player
+        redirect_to game
+      end
       .on(:already_playing, :full) { redirect_to games_path }
       .on(:failure) { |_| redirect_to games_path }
       .call
@@ -31,5 +39,16 @@ class GamesController < ApplicationController
 
   def game
     @game ||= Game.includes(turns: :moves).find(params[:id])
+  end
+
+  def current_player
+    @player ||= game.players.detect do |player|
+      player.user_id == current_user.id
+    end
+  end
+
+  def current_player=(player)
+    @player = player
+    cookies.signed[:user_id] = current_user.id
   end
 end
