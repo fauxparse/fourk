@@ -22,6 +22,10 @@ class Hex
     self == another
   end
 
+  def adjacent_to?(another)
+    neighbours.include?(another)
+  end
+
   def hash
     to_a.hash
   end

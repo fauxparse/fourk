@@ -12,4 +12,8 @@ class Tile
   def blocked?
     false
   end
+
+  def ==(another)
+    color == another.color
+  end
 end

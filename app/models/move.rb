@@ -2,6 +2,8 @@ class Move < ApplicationRecord
   belongs_to :turn, counter_cache: true
   has_one :game, through: :turn
 
+  composed_of :hex, mapping: [%w(x x), %w(y y), %w(z z)]
+
   enum color: { black: "black" }.merge(Color::HASH)
 
   acts_as_list scope: :turn, top_of_list: 0
@@ -14,8 +16,12 @@ class Move < ApplicationRecord
 
   validate :unique_move, on: :create
 
-  def hex
-    Hex.new(x, y, z)
+  def tile
+    if black?
+      Blockage.new
+    else
+      Tile.new(Color[color])
+    end
   end
 
   private

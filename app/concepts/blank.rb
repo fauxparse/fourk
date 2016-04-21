@@ -10,4 +10,8 @@ class Blank
   def blocked?
     false
   end
+
+  def ==(another)
+    another.blank?
+  end
 end

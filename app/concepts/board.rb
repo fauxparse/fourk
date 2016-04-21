@@ -40,6 +40,14 @@ class Board
     hexes.all? { |hex| self[hex].blank? }
   end
 
+  def each_hex(&block)
+    hexes.each(&block)
+  end
+
+  def neighbours(hex)
+    hex.neighbours & hexes
+  end
+
   private
 
   def shape

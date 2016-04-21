@@ -47,8 +47,6 @@ class Game < ApplicationRecord
     @colors ||= Color.first(number_of_colors)
   end
 
-  private
-
   def shape
     Board.const_get(board_shape.to_s.camelize).new(board_size)
   end

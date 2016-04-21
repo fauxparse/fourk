@@ -10,4 +10,8 @@ class Blockage
   def blocked?
     true
   end
+
+  def ==(another)
+    another.blocked?
+  end
 end
