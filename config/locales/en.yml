@@ -17,5 +17,5 @@ en:
       their_turn: "%{opponent}’s turn"
     result:
       game_over: "Game over, man."
-      you_win: "You won, which must be nice."
-      they_win: "%{player} is the winner."
+      you_win: "You’re the winner!"
+      they_win: "%{player} wins."

@@ -195,14 +195,11 @@ header {
 
 .game-result {
   @include position(absolute, -50% 0% null 0%);
-  width: 40rem;
-  max-width: 100%;
   z-index: 200;
   margin: -5rem auto;
   padding: 1rem;
-  background: rgba($blue-grey-900, .85);
+  background: rgba($blue-grey-900, .5);
   color: white;
-  border-radius: .5rem;
   -webkit-font-smoothing: antialiased;
   box-shadow: 0 1rem 2rem rgba($blue-grey-900, .25);
   text-align: center;
