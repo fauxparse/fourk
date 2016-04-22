@@ -22,6 +22,14 @@ class Move < ApplicationRecord
     end
   end
 
+  def score
+    if black?
+      -10
+    else
+      3 ** position
+    end
+  end
+
   private
 
   def unique_move

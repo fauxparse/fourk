@@ -21,6 +21,16 @@ module GamesHelper
     end
   end
 
+  def winning_message(player)
+    content = if player.user_id == current_user.id
+      t("games.result.you_win")
+    else
+      t("games.result.they_win", player: player.name)
+    end
+
+    content_tag :p, content, class: "winner", "data-player-id" => player.id
+  end
+
   private
 
   def meta_tag(name, content)

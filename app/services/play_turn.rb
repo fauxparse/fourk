@@ -27,6 +27,12 @@ class PlayTurn
     end
     publish(:success, turn)
     EndTurn.new(turn).call
+
+    if @board_state.full?
+      EndGame.new(@game).call
+    else
+      StartTurn.new(@game).call
+    end
   end
 
   private

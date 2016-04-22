@@ -5,8 +5,7 @@ class GamesForUser
 
   def games
     Game
-      .includes(players: :user)
       .joins(:players)
-      .where("players.user_id = ? OR games.players_count < 2", @user.id)
+      .where("(state = ? AND players.user_id = ?) OR games.players_count < 2", :playing, @user.id)
   end
 end

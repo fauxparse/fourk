@@ -1,9 +1,11 @@
 $ ->
+  console.log "boop"
   palette = $(".palette")
   paletteWidth = parseInt(palette.attr("width"), 10)
   paletteHeight = parseInt(palette.attr("height"), 10)
 
   $(".playing-area").on "mousedown touchstart", (e) ->
+    console.log "boop"
     hex = $(e.target).closest(".blank.hex")
 
     if hex.length

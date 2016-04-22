@@ -36,6 +36,10 @@ class Board
     @occupants[hex.to_a] = value
   end
 
+  def full?
+    hexes.none? { |hex| self[hex].blank? }
+  end
+
   def empty?
     hexes.all? { |hex| self[hex].blank? }
   end

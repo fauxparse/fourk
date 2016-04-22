@@ -1,5 +1,5 @@
 class PlayerSerializer < ActiveModel::Serializer
-  attributes :id, :name, :avatar
+  attributes :id, :name, :avatar, :score
 
   def avatar
     object.user.avatar

@@ -149,3 +149,35 @@ header {
     @include transition-delay($i * 150ms);
   }
 }
+
+.game-result {
+  @include position(absolute, -50% 0% null 0%);
+  width: 40rem;
+  max-width: 100%;
+  z-index: 200;
+  margin: -5rem auto;
+  padding: 1rem;
+  background: rgba($blue-grey-900, .85);
+  color: white;
+  border-radius: .5rem;
+  -webkit-font-smoothing: antialiased;
+  box-shadow: 0 1rem 2rem rgba($blue-grey-900, .25);
+  text-align: center;
+  @include transition(top 0.25s $ease-out-back);
+
+  h2 {
+    font-size: 300%;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  p {
+    margin: 0;
+    display: none;
+  }
+
+  &.show {
+    top: 50%;
+  }
+}

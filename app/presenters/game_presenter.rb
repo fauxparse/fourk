@@ -13,11 +13,15 @@ class GamePresenter
   end
 
   def opponent
-    @game.players.detect { |player| player.user_id != @user.id }
+    players.detect { |player| player.user_id != @user.id }
   end
 
   def player
-    @game.players.detect { |player| player.user_id == @user.id }
+    players.detect { |player| player.user_id == @user.id }
+  end
+
+  def players
+    @game.players
   end
 
   def current_player
@@ -26,5 +30,9 @@ class GamePresenter
 
   def colors
     @game.colors.map(&:name)
+  end
+
+  def finished?
+    @game.finished?
   end
 end

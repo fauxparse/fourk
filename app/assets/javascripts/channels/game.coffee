@@ -16,6 +16,7 @@ $ ->
       switch data.action
         when "turn:start" then @startTurn(data.player)
         when "turn:play"  then @playTurn(data.turn)
+        when "game:end"   then @endGame(data.game)
 
     startTurn: (player) ->
       turn = if player.id.toString() == App.config.player_id
@@ -26,3 +27,6 @@ $ ->
 
     playTurn: (turn) ->
       (new App.PlayTurn(turn)).call()
+
+    endGame: (game) ->
+      (new App.EndGame(game)).call()

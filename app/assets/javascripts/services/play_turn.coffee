@@ -6,7 +6,6 @@ class App.PlayTurn
     @playMove(move) for move in @turn.moves
 
   playMove: (move) ->
-    console.log move
     [x, y, z] = move.position
     hex = $(".hex[data-x=#{x}][data-y=#{y}][data-z=#{z}]")
     hex.removeClass("blank").attr("data-step", move.step)

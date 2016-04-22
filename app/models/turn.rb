@@ -9,4 +9,8 @@ class Turn < ApplicationRecord
 
   validates :player,
     inclusion: { within: ->(turn) { turn.game.players } }
+
+  def score
+    moves.sum(&:score)
+  end
 end

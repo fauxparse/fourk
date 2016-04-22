@@ -1,0 +1,4 @@
+.game-result{class: ("show" if game.finished?)}
+  %h2= t(".game_over")
+  - game.players.each do |player|
+    = winning_message(player)
