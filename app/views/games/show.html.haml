@@ -1,5 +1,6 @@
 - content_for :head do
   - meta_tags "player-id" => current_player.id, "game-id" => @game_presenter.id
+  = javascript_include_tag "game"
 
 %header
   = link_to games_path do

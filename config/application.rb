@@ -27,5 +27,7 @@ module Fourk
     %w(concepts presenters queries services).each do |dir|
       config.autoload_paths << Rails.root.join('app', dir)
     end
+
+    config.assets.precompile += %w(game.js games.js)
   end
 end

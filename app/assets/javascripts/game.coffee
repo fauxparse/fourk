@@ -1,3 +1,6 @@
+#= require ./channels/game
+#= require_self
+
 $ ->
   palette = $(".palette")
   paletteWidth = parseInt(palette.attr("width"), 10)
