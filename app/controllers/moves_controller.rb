@@ -1,8 +1,8 @@
 class MovesController < ApplicationController
   def create
-    turn = PlayTurn.new(game, player, params.require(:move))
-    turn.call
-    head :ok
+    PlayTurn.new(game, player, params.require(:move))
+      .on(:success) { |turn| render json: turn }
+      .call
   end
 
   private

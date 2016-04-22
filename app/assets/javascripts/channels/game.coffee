@@ -1,13 +1,11 @@
 $ ->
-  config = {
+  App.config = {
     channel: "GameChannel"
     game_id: $("meta[name=game-id]").attr("content")
-    player_: $("meta[name=player-id]").attr("content")
+    player_id: $("meta[name=player-id]").attr("content")
   }
 
-  console.log config
-
-  App.game = App.cable.subscriptions.create config,
+  App.game = App.cable.subscriptions.create App.config,
     connected: ->
       # Called when the subscription is ready for use on the server
 
@@ -15,15 +13,16 @@ $ ->
       # Called when the subscription has been terminated by the server
 
     received: (data) ->
-      if data.action == "turn"
-        @startTurn(data.player)
-
-    play: ->
-      @perform 'play'
+      switch data.action
+        when "turn:start" then @startTurn(data.player)
+        when "turn:play"  then @playTurn(data.turn)
 
     startTurn: (player) ->
-      turn = if player.id.toString() == config.player_id
+      turn = if player.id.toString() == App.config.player_id
         "Your turn"
       else
         "#{player.name}’s turn"
       $("header .turn").text(turn)
+
+    playTurn: (turn) ->
+      (new App.PlayTurn(turn)).call()

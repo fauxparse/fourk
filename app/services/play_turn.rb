@@ -1,4 +1,6 @@
 class PlayTurn
+  include Shout
+
   attr_accessor :params
 
   def initialize(game, player, move_params)
@@ -12,16 +14,19 @@ class PlayTurn
     raise(ArgumentError) unless turn.try(:player) == @player
     @game.with_lock do
       moves = [[initial_hex, initial_tile]]
+      step = 0
 
       while moves.any?
         moves.each do |hex, tile|
           @board_state.board[hex] = tile
-          turn.moves.create(hex: hex, color: move_color(tile))
+          turn.moves.create(hex: hex, color: move_color(tile), position: step)
         end
         moves = ForcedMoves.new(@board_state).moves
+        step += 1
       end
     end
-    EndTurn.new(@game).call
+    publish(:success, turn)
+    EndTurn.new(turn).call
   end
 
   private

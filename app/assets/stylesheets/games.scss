@@ -59,6 +59,10 @@ header {
   }
 
   .hex {
+    .hexagon {
+      @include transition(all .5s $ease-in-out-back);
+    }
+
     &.blank {
       .hexagon {
         fill: $blue-grey-50;
@@ -127,4 +131,21 @@ header {
 .hex[data-color="blue"]:not(.mine) .hexagon  { fill: $light-blue-100; }
 .hex[data-color="yellow"]:not(.mine) .hexagon { fill: $amber-100; }
 
+.hex[data-color] .hexagon {
+  @include transform(rotate(360deg));
+}
+
+.hex:not(.mine)[data-color],
+.hex.blocked {
+  .hexagon {
+    @include transform(scale(.75) rotate(360deg));
+  }
+}
+
 .hex.blocked .hexagon { fill: $blue-grey-900; }
+
+@for $i from 1 through 100 {
+  .hex[data-step="#{$i}"] .hexagon {
+    @include transition-delay($i * 150ms);
+  }
+}

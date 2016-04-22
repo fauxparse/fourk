@@ -6,8 +6,6 @@ class Move < ApplicationRecord
 
   enum color: { black: "black" }.merge(Color::HASH)
 
-  acts_as_list scope: :turn, top_of_list: 0
-
   validates :turn, presence: true
 
   validates :x, :y, :z,

@@ -6,7 +6,7 @@ class StartTurn
   def call
     @turn = @game.turns.create(player: next_player)
     GameChannel.broadcast_to @game,
-      action: "turn", player: serialize_player(@turn.player).as_json
+      action: "turn:start", player: serialize_player(@turn.player).as_json
   end
 
   private
