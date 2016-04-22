@@ -24,6 +24,7 @@ main {
 header {
   @include display(flex);
   @include justify-content(space-between);
+  @include align-items(center);
   position: fixed;
   z-index: 10;
   top: 0;
@@ -37,8 +38,12 @@ header {
   > * {
     @include ellipsis;
     color: $white;
-    padding: .75rem 1rem;
+    padding: 0 1rem;
     line-height: 1.5rem;
+  }
+
+  h1 {
+    margin: 0;
   }
 
   a:hover {
@@ -47,6 +52,44 @@ header {
 
   .playing-with {
     font-weight: bold;
+  }
+
+  .scores {
+    @include display(flex);
+    margin: 0;
+    padding: 0 1rem;
+    list-style: none;
+
+    li {
+      @include display(flex);
+      @include align-items(center);
+
+      .name {
+        padding: 0 .25rem;
+      }
+
+      &:first-child::after,
+      .score {
+        padding: 0 .25rem;
+        font-size: 1.5rem;
+        line-height: 2rem;
+        vertical-align: middle;
+        font-weight: 700;
+      }
+
+      &:first-child {
+        &::after {
+          content: "•";
+          padding: 0;
+        }
+      }
+
+      &:last-child {
+        .score {
+          @include order(-1);
+        }
+      }
+    }
   }
 }
 

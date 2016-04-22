@@ -1,5 +1,4 @@
 $ ->
-  console.log "boop"
   palette = $(".palette")
   paletteWidth = parseInt(palette.attr("width"), 10)
   paletteHeight = parseInt(palette.attr("height"), 10)

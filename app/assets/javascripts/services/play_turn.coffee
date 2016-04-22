@@ -4,6 +4,7 @@ class App.PlayTurn
 
   call: ->
     @playMove(move) for move in @turn.moves
+    @updateScore()
 
   playMove: (move) ->
     [x, y, z] = move.position
@@ -15,3 +16,6 @@ class App.PlayTurn
     else
       hex.attr("data-color", move.color)
 
+  updateScore: ->
+    $("header [data-player-id=#{@turn.player.id}] .score")
+      .text(@turn.player.score)

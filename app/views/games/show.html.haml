@@ -5,7 +5,13 @@
   = link_to games_path do
     = icon("chevron-left")
     = t(".back")
-  %span.playing-with= t(".opponent", opponent: @game_presenter.opponent)
+  %ul.scores
+    %li{"data-player-id": @game_presenter.player.id}
+      %span.name= t(".you")
+      %b.score= @game_presenter.player.score
+    %li{"data-player-id": @game_presenter.opponent.id}
+      %span.name= @game_presenter.opponent
+      %b.score= @game_presenter.opponent.score
   %span.turn= whose_turn(@game_presenter.current_player)
 
 %main
